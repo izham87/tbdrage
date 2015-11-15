@@ -26,11 +26,11 @@ function main() {
 }
 
 function parse(x) {
-  var regex = /^~(.+)$/;
-  var matches = x.message.match(regex)
+  var matches = x.message.match(/^(?:~(.+)|(;d))$/i);
   if (matches) {
-    if (url.hasOwnProperty(matches[1])) {
-      x.message = "![](" + decodeURIComponent(url[matches[1]]) + ")";
+    var name = matches[2] ? 'troll' : matches[1].toLowerCase();
+    if (url.hasOwnProperty(name)) {
+      x.message = "![](" + decodeURIComponent(url[name]) + ")";
     }
   }
   return x;
