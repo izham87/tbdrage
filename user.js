@@ -26,12 +26,14 @@ function main() {
 }
 
 function parse(x) {
-  var matches = x.message.match(/^(?:~(.+)|(;d))$/i);
-  if (matches) {
-    var name = matches[2] ? 'troll' : matches[1].toLowerCase();
-    if (url.hasOwnProperty(name)) {
-      x.message = "![](" + decodeURIComponent(url[name]) + ")";
+  x.message = x.message.replace(/(~(\w+)|;d)/gi, function(match, p1, p2){
+    if (p1) {
+      var name = p2 ? p2.toLowerCase() : 'troll';
+      if (url.hasOwnProperty(name)) {
+        match = "![](" + decodeURIComponent(url[name]) + ")";
+      }
     }
-  }
+    return match;
+  });
   return x;
 }
