@@ -20,17 +20,17 @@ $.getJSON("https://api.github.com/repos/mokhdzanifaeq/tbdrage/contents/meme", fu
 });
 
 function main() {
-    console.log("TBDmeme loaded");
+    app.alertSuccess('TBDMeme has been loaded');
  Shoutbox.instances.main.sockets.sendShout = function(t){
     console.log(t);
-     console.log(parse(t));
+    console.log(parse(t));
     socket.emit( "plugins.shoutbox.send", parse(t) );
   }
 }
 
 function parse(x) {
   x.message = x.message.replace(/(~(=?\w+)|;d)/gi, function(match, p1, p2){
-      console.log(p1);
+      //console.log(p1);
     if (p1) {
       var name = p2 ? p2.toLowerCase() : 'troll';
       if (url.hasOwnProperty(name)) {
