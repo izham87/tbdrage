@@ -29,7 +29,7 @@ function main() {
 }
 
 function parse(x) {
-  x.message = x.message.replace(/(~(=?\w+)|;d)/gi, function(match, p1, p2){
+  x.message = x.message.replace(/(~([^\s]+)|;d)/gi, function(match, p1, p2){
       //console.log(p1);
     if (p1) {
       var name = p2 ? p2.toLowerCase() : 'troll';
